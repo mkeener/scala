@@ -6,4 +6,5 @@ object test_worksheet {
   def increase(i: Int) = i + 1                    //> increase: (i: Int)Int
   increase(x)                                     //> res0: Int = 2
   increase(increase(x))                           //> res1: Int = 3
+  
 }
