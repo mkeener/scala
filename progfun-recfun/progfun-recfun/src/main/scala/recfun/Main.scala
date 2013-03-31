@@ -22,7 +22,22 @@ object Main {
   /**
    * Exercise 2
    */
-  def balance(chars: List[Char]): Boolean = ???
+  def balance(chars: List[Char]): Boolean = {
+    var a = 0
+    def loop(acc: Int, c: List[Char]): Boolean = {
+      if(acc < 0 || c.isEmpty){
+        if(acc == 0) return true
+        return false
+      } 
+      if(c.head == '(') {
+        a = a + 1
+      } else if (c.head == ')'){
+        a = a - 1
+      }
+      return loop(a, c.tail)	
+    }
+    return loop(a, chars)
+  }
 
   /**
    * Exercise 3
