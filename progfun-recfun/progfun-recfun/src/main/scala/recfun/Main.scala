@@ -62,7 +62,6 @@ object Main {
     	}
     	return a
     }
-    
     return loop(money, list)
   }        
 }
