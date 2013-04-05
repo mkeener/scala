@@ -43,19 +43,21 @@ object Main {
     val list = coins.sortWith(_ > _)
     
     //build the list
-    def loop(tender: Int, c: List[Int]): Int = {
+    def loop(acc: Int, tender: Int, c: List[Int]): Int = {
     	if(tender == 0){
 	    	a = a + 1
 	    	return a
     	}
-    	if(c.isEmpty) return a
-    	val heads = tender / c.head
-    	for(head <- heads to 0 by -1){
-	    	val newtender = tender - (c.head * head)
-	    	loop(newtender,c.tail)
+    	if(c.isEmpty) a
+    	else{
+	    	val heads = tender / c.head
+	    	for(head <- heads to 0 by -1){
+		    	val newtender = tender - (c.head * head)
+		    	loop(acc, newtender,c.tail)
+	    	}
     	}
-    	return a
+    	a
     }
-    loop(money, list)
+    loop(0, money, list)
   }        
 }
