@@ -24,4 +24,24 @@ object session {
   sqrt(64)                                        //> res3: Double = 8.000001655289593
   sqrt(1e-6)                                      //> res4: Double = 0.0010000001533016628
   sqrt(1e60)                                      //> res5: Double = 1.0000000031080746E30
+  
+  def balance(chars: List[Char]): Boolean = {
+    var a = 0
+    def loop(acc: Int, c: List[Char]): Boolean = {
+      if(acc < 0 || c.isEmpty) return (acc == 0)
+      val newAcc =
+        if(c.head == '(') acc + 1
+        else if (c.head == ')') acc - 1
+        else acc
+      loop(newAcc, c.tail)
+    }
+    loop(0, chars)
+  }                                               //> balance: (chars: List[Char])Boolean
+  
+	balance("(if (zero? x) max (/ 1 x))".toList)
+                                                  //> res6: Boolean = true
+	balance("I told him (that it's not (yet) done).\n(But he wasn't listening)".toList)
+                                                  //> res7: Boolean = true
+	balance(":-)".toList)                     //> res8: Boolean = false
+	balance("())(".toList)                    //> res9: Boolean = false
 }
