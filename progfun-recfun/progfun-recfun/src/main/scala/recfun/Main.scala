@@ -46,7 +46,7 @@ object Main {
    def countChange(money: Int, coins: List[Int]): Int = {
     if(money == 0 || coins.isEmpty) return 0
     var a = 0
-    var list = coins.sortWith(_ > _)
+    val list = coins.sortWith(_ > _)
     
     //build the list
     def loop(tender: Int, c: List[Int]): Int = {
@@ -55,13 +55,13 @@ object Main {
 	    	return a
     	}
     	if(c.isEmpty) return a
-    	var heads = tender / c.head
+    	val heads = tender / c.head
     	for(head <- heads to 0 by -1){
-	    	var newtender = tender - (c.head * head)
+	    	val newtender = tender - (c.head * head)
 	    	loop(newtender,c.tail)
     	}
     	return a
     }
-    return loop(money, list)
+    loop(money, list)
   }        
 }
