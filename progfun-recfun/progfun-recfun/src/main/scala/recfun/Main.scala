@@ -24,21 +24,16 @@ object Main {
    * Exercise 2
    */
   def balance(chars: List[Char]): Boolean = {
-    var a = 0
     def loop(acc: Int, c: List[Char]): Boolean = {
-      if(acc < 0 || c.isEmpty){
-        if(acc == 0) return true
-        return false
-      } 
-      if(c.head == '(') {
-        a = a + 1
-      } else if (c.head == ')'){
-        a = a - 1
-      }
-      return loop(a, c.tail)	
+      if(acc < 0 || c.isEmpty) return (acc == 0)
+      val newAcc = 
+        if(c.head == '(') acc + 1
+        else if (c.head == ')') acc - 1
+        else acc
+      loop(newAcc, c.tail)
     }
-    return loop(a, chars)
-  }
+    loop(0, chars)
+  }   
 
   /**
    * Exercise 3
