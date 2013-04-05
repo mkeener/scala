@@ -1,5 +1,6 @@
 package recfun
 import common._
+import scala.collection.mutable.ListBuffer
 
 object Main {
   def main(args: Array[String]) {
@@ -42,5 +43,26 @@ object Main {
   /**
    * Exercise 3
    */
-  def countChange(money: Int, coins: List[Int]): Int = ???
+   def countChange(money: Int, coins: List[Int]): Int = {
+    if(money == 0 || coins.isEmpty) return 0
+    var a = 0
+    var list = coins.sortWith(_ > _)
+    
+    //build the list
+    def loop(tender: Int, c: List[Int]): Int = {
+    	if(tender == 0){
+	    	a = a + 1
+	    	return a
+    	}
+    	if(c.isEmpty) return a
+    	var heads = tender / c.head
+    	for(head <- heads to 0 by -1){
+	    	var newtender = tender - (c.head * head)
+	    	loop(newtender,c.tail)
+    	}
+    	return a
+    }
+    
+    return loop(money, list)
+  }        
 }
