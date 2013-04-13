@@ -78,14 +78,8 @@ object testset {
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-  def exists(s: Set, p: Int => Boolean): Boolean = {
-    def iter(a: Int): Boolean = {
-      if (a > bound) false
-      else if (contains(intersect(s, p), a)) true
-      else iter(a+1)
-    }
-    iter(-1000)
-  }                                               //> exists: (s: Int => Boolean, p: Int => Boolean)Boolean
+  def exists(s: Set, p: Int => Boolean): Boolean = forall(p, s)
+                                                  //> exists: (s: Int => Boolean, p: Int => Boolean)Boolean
 
 	exists(s4, ((x: Int) => x == 1))          //> res4: Boolean = true
 
