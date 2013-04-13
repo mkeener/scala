@@ -21,6 +21,8 @@ object testset {
 	val s1 = singletonSet(1)                  //> s1  : Int => Boolean = <function1>
 	val s2 = singletonSet(2)                  //> s2  : Int => Boolean = <function1>
 	val s3 = singletonSet(3)                  //> s3  : Int => Boolean = <function1>
+
+	
   /**
    * Returns the union of the two given sets,
    * the sets of all elements that are in either `s` or `t`.
@@ -30,6 +32,8 @@ object testset {
 	contains(s1, 2)                           //> res0: Boolean = false
 	contains(union(s1, s2), 2)                //> res1: Boolean = true
 	contains(union(s1, s2), 3)                //> res2: Boolean = false
+	val s4 = union(s1, s2)                    //> s4  : Int => Boolean = <function1>
+	val s5 = union(s3, s4)                    //> s5  : Int => Boolean = <function1>
   /**
    * Returns the intersection of the two given sets,
    * the set of all elements that are both in `s` and `t`.
@@ -67,6 +71,9 @@ object testset {
     iter(-1000)
   }                                               //> forall: (s: Int => Boolean, p: Int => Boolean)Boolean
 
+	forall(s4, ((x: Int) => x > 0))           //> res3: Boolean = true
+	
+
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
@@ -79,6 +86,8 @@ object testset {
     }
     iter(-1000)
   }                                               //> exists: (s: Int => Boolean, p: Int => Boolean)Boolean
+
+	exists(s4, ((x: Int) => x == 1))          //> res4: Boolean = true
 
   /**
    * Returns a set transformed by applying `f` to each element of `s`.
